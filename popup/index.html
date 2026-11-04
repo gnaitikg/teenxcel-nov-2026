@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Referral Code | TeenXcel</title>
+  <meta name="description" content="Enter your referral code to continue to your TeenXcel course.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://teenxcel.in/popup/">
+  <meta property="og:site_name" content="TeenXcel">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_IN">
+  <meta property="og:title" content="Referral Code | TeenXcel">
+  <meta property="og:description" content="Enter your referral code to continue to your TeenXcel course.">
+  <meta property="og:url" content="https://teenxcel.in/popup/">
+  <meta property="og:image" content="https://teenxcel.in/assets/images/brand/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="TeenXcel logo">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://teenxcel.in/assets/images/brand/og-image.png">
+  <meta name="twitter:title" content="Referral Code | TeenXcel">
+  <meta name="twitter:description" content="Enter your referral code to continue to your TeenXcel course.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/brand/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/brand/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/brand/apple-touch-icon.png">
+  <!-- Add this BEFORE your script -->
+<script src="/assets/js/live-courses-checkout-legacy/abs.js"></script>
+
+  <style>
+    #content.blur {
+      filter: blur(5px);
+      pointer-events: none;
+      user-select: none;
+    }
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      width: 300px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 1001;
+    }
+    .modal input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 10px;
+    }
+    .modal button {
+      margin-top: 10px;
+      padding: 8px 15px;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="content">
+    <a href="#" id="refBtn">Have Referral Code</a>
+    <!-- Your other page content can go here -->
+  </div>
+
+  <div class="modal-overlay" id="popupOverlay">
+    <div class="modal">
+      <h3>Enter Referral Code</h3>
+      <input type="text" id="refCodeInput" placeholder="Enter code here">
+      <br>
+      <button onclick="checkCode()">Submit</button>
+      <div class="error" id="errorMsg"></div>
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById('refBtn');
+    const overlay = document.getElementById('popupOverlay');
+    const input = document.getElementById('refCodeInput');
+    const error = document.getElementById('errorMsg');
+    const content = document.getElementById('content');
+
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      overlay.style.display = 'flex';
+      content.classList.add('blur');
+    });
+
+    function checkCode() {
+  const enteredCode = input.value.trim();
+  const redirectLink = getRedirectLink(enteredCode);
+
+  if (redirectLink) {
+    window.location.href = redirectLink;
+  } else {
+    error.textContent = 'Invalid referral code. Please try again.';
+  }
+}
+
+    // Optional: Close popup on ESC
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        overlay.style.display = 'none';
+        content.classList.remove('blur');
+        error.textContent = '';
+        input.value = '';
+      }
+    });
+  </script>
+
+</body>
+</html>

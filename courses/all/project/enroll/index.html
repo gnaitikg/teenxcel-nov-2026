@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Payment | TeenXcel</title>
+  <meta name="description" content="Complete your TeenXcel course enrollment payment.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://teenxcel.in/courses/all/project/enroll/">
+  <meta property="og:site_name" content="TeenXcel">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_IN">
+  <meta property="og:title" content="Course Payment | TeenXcel">
+  <meta property="og:description" content="Complete your TeenXcel course enrollment payment.">
+  <meta property="og:url" content="https://teenxcel.in/courses/all/project/enroll/">
+  <meta property="og:image" content="https://teenxcel.in/assets/images/brand/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="TeenXcel logo">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://teenxcel.in/assets/images/brand/og-image.png">
+  <meta name="twitter:title" content="Course Payment | TeenXcel">
+  <meta name="twitter:description" content="Complete your TeenXcel course enrollment payment.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/brand/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/brand/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/brand/apple-touch-icon.png">
+    <link rel="stylesheet" href="/assets/css/courses-all/enroll.css">
+</head>
+
+<body>
+    <img src="/assets/images/courses/AD-S.png" class="background-image" alt="">
+    <div class="sparkles-container" id="sparklesContainer"></div>
+
+    <div class="back-button" id="backButton">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+    </div>
+
+    <div class="container form-wrapper">
+        <form id="paymentForm" enctype="multipart/form-data">
+            <!-- Step 1 -->
+            <div class="form-step" id="step1">
+                <h2>Personal Details</h2>
+                <div class="input-group">
+                    <input type="text" id="name" name="name" placeholder="Name" required>
+                    <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                    <input type="text" id="school" name="school" placeholder="School/College Name" required>
+                    <input type="text" id="sem" name="sem" placeholder="Semester (Optional)">
+                    <label for="courseCode" style="margin-top: 10px; font-weight: bold;">Course Code
+                        (Pre-filled)</label>
+                    <input type="text" id="courseCode" name="courseCode" readonly
+                        style="background-color: #f0f0f0; color: #333;">
+                </div>
+                <button type="button" class="next-btn" onclick="nextStep(1)">Next</button>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="form-step hidden" id="step2">
+                <h2>Payment Details</h2>
+                <div class="amount" id="originalAmount">₹0</div>
+                <div class="input-group">
+                    <input type="text" id="couponCode" name="couponCode" placeholder="Enter Coupon Code">
+                    <button type="button" class="apply-btn" onclick="applyCoupon()">Apply Coupon</button>
+                </div>
+                <div class="discount-info hidden" id="discountInfo">
+                    <p>Discount Applied: <span id="discountAmount">₹0</span></p>
+                    <p>Final Amount: <span id="finalAmount"></span></p>
+                </div>
+                <div class="coupon-animation hidden" id="couponAnimation">
+                    <div class="coupon-success">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2">
+                            <path d="M20 6L9 17l-5-5" />
+                        </svg>
+                        <span>Coupon Applied Successfully!</span>
+                    </div>
+                </div>
+                <div class="qr-code">
+                    <img src="/assets/images/courses-all/qr.jpg" alt="Payment QR Code">
+                </div>
+                <div class="upi-id">UPI ID: 6393033482@ptaxis</div>
+                <div class="payment-note">Pay on this QR or UPI</div>
+                <label class="checkbox-container">
+                    <input type="checkbox" name="paymentDone" id="paymentDone" required>
+                    <span class="checkmark"></span>
+                    Done the payment
+                </label>
+                <button type="button" class="next-btn" onclick="nextStep(2)">Next</button>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="form-step hidden" id="step3">
+                <h2>Upload Payment Screenshot</h2>
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="image" name="image" accept=".jpg,.jpeg,.png,.gif,.webp,.avif" required>
+                    <div class="upload-text">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" />
+                        </svg>
+                        <span>Click to upload or drag and drop</span>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">Submit Payment</button>
+            </div>
+
+            <!-- Step 4: Processing and Confirmation -->
+            <div class="form-step hidden" id="step4">
+                <h2>Processing Payment</h2>
+                <div class="processing-indicator">
+                    <div class="spinner"></div>
+                    <p>Please wait while we process your payment...</p>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Modals -->
+    <div id="backModal" class="modal">
+        <div class="modal-content">
+            <h3>Are you sure you want to leave the payment page?</h3>
+            <div class="modal-buttons">
+                <button onclick="closeBackModal()">Cancel</button>
+                <a href="/courses/all/project/"><button>Leave</button></a>
+            </div>
+        </div>
+    </div>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h3>Great to have you on this tech skill mission!</h3>
+            <p>Our team will confirm your payment and report you in next 24 hrs.</p>
+            <p class="note">Note: If not then please contact us</p>
+            <div class="modal-buttons">
+                <button onclick="closeSuccessModal()">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="failureModal" class="modal">
+        <div class="modal-content failure">
+            <h3>Payment Submission Failed</h3>
+            <p id="failureMessage">An error occurred. Please try again.</p>
+            <div class="modal-buttons">
+                <button onclick="closeFailureModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="successSound" src="../pay-course/pp.mp3"></audio>
+    <style>
+        .processing-indicator {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid var(--primary-color, #4f46e5);
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .modal-buttons button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: var(--primary-color, #4f46e5);
+            color: white;
+            border: none;
+        }
+
+        .coupon-animation {
+            text-align: center;
+            margin: 10px 0;
+            opacity: 0;
+            transform: translateY(20px) scale(0.8);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .coupon-animation.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .coupon-success {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #22c55e;
+            font-weight: bold;
+            background: #e0f7e9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: popIn 0.7s ease-out;
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            70% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .amount {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            transition: all 0.4s ease;
+        }
+
+        .amount.discount-applied {
+            color: #22c55e;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .apply-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: var(--primary-color, #4f46e5);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .apply-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .apply-btn:hover::after {
+            width: 200px;
+            height: 200px;
+        }
+
+        .sparkles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes particle-animation {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: translateY(-20px) scale(1.2);
+                opacity: 0.4;
+            }
+
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .form-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+    <script>
+        let currentStep = 1;
+        let coursePrice = 0;
+        let discountAmount = 0;
+        let finalAmount = 0;
+        let couponCode = null;
+        let submissionInProgress = false;
+        let formInitialized = false;
+        let lastBeforeUnloadTime = 0;
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseCode = urlParams.get('courseCode');
+
+        async function fetchCourseDetails() {
+            if (!courseCode) {
+                alert('Course code not found in URL');
+                return;
+            }
+            try {
+                const response = await fetch(`https://teenxcel-production.up.railway.app/api/courses/get-course/${courseCode}`);
+                const data = await response.json();
+                if (data.success && data.statusCode === 200) {
+                    coursePrice = data.data.price;
+                    document.getElementById('courseCode').value = data.data.courseCode;
+                    document.getElementById('originalAmount').textContent = `₹${coursePrice}`;
+                    finalAmount = coursePrice;
+                } else {
+                    alert('Failed to fetch course details');
+                }
+            } catch (error) {
+                console.error('Error fetching course:', error);
+                alert('Error fetching course details');
+            }
+        }
+
+        async function applyCoupon() {
+            const couponInput = document.getElementById('couponCode').value.trim();
+            const applyButton = document.querySelector('.apply-btn');
+            const couponAnimation = document.getElementById('couponAnimation');
+            const originalAmount = document.getElementById('originalAmount');
+
+            if (!couponInput) {
+                alert('Please enter a coupon code');
+                return;
+            }
+
+            applyButton.disabled = true;
+            applyButton.textContent = 'Applying...';
+
+            try {
+                const response = await fetch('https://teenxcel-production.up.railway.app/api/coupons/verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ courseCode, couponCode: couponInput })
+                });
+                const data = await response.json();
+                if (data.success && data.statusCode === 200) {
+                    discountAmount = data.data.discountAmount;
+                    finalAmount = data.data.finalAmount;
+                    couponCode = data.data.couponCode;
+
+                    // Update price display: replace original with final amount
+                    originalAmount.classList.add('discount-applied');
+                    originalAmount.textContent = `₹${finalAmount}`;
+                    document.getElementById('discountAmount').textContent = `₹${discountAmount}`;
+                    document.getElementById('finalAmount').textContent = `₹${finalAmount}`;
+                    document.getElementById('discountInfo').classList.remove('hidden');
+
+                    // Show coupon animation and sparkles
+                    couponAnimation.classList.remove('hidden');
+                    couponAnimation.classList.add('show');
+                    triggerSparkles();
+                    setTimeout(() => {
+                        couponAnimation.classList.remove('show');
+                        couponAnimation.classList.add('hidden');
+                    }, 3000);
+                } else {
+                    alert('Invalid or expired coupon');
+                }
+            } catch (error) {
+                console.error('Error verifying coupon:', error);
+                alert('Error verifying coupon');
+            } finally {
+                applyButton.disabled = false;
+                applyButton.textContent = 'Apply Coupon';
+            }
+        }
+
+        function triggerSparkles() {
+            const particlesContainer = document.getElementById('sparklesContainer');
+            const maxParticles = 20;
+            const inputGroup = document.querySelector('.input-group');
+            const rect = inputGroup.getBoundingClientRect();
+
+            for (let i = 0; i < maxParticles; i++) {
+                createParticle(particlesContainer, rect);
+            }
+        }
+
+        function createParticle(container, rect) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+
+            // Position particles around the coupon input
+            const x = ((rect.left + rect.width / 2) + (Math.random() - 0.5) * rect.width) / window.innerWidth * 100;
+            const y = ((rect.top + rect.height / 2) + (Math.random() - 0.5) * rect.height) / window.innerHeight * 100;
+
+            // Random properties
+            const size = Math.random() * 4 + 2;
+            const opacity = Math.random() * 0.5 + 0.3;
+            const duration = Math.random() * 1 + 0.5;
+            const delay = Math.random() * 0.3;
+
+            // Set styles
+            particle.style.left = `${x}%`;
+            particle.style.top = `${y}%`;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.opacity = opacity;
+            particle.style.animation = `particle-animation ${duration}s ease-out forwards`;
+            particle.style.animationDelay = `${delay}s`;
+
+            container.appendChild(particle);
+
+            // Remove particle after animation
+            setTimeout(() => {
+                particle.remove();
+            }, (duration + delay) * 1000);
+        }
+
+        function validateName(name) {
+            return /^[A-Za-z\s\-'\.]{2,50}$/.test(name);
+        }
+
+        function validatePhone(phone) {
+            return /^\d{10}$/.test(phone);
+        }
+
+        function closeBackModal() {
+            document.getElementById('backModal').style.display = 'none';
+        }
+
+        function closeFailureModal() {
+            document.getElementById('failureModal').style.display = 'none';
+            document.getElementById('step4').classList.add('hidden');
+            document.getElementById('step3').classList.remove('hidden');
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').style.display = 'none';
+            window.location.href = '/courses/all/project/';
+        }
+
+        function resetForm() {
+            document.getElementById('paymentForm').reset();
+            document.getElementById('discountInfo').classList.add('hidden');
+            document.getElementById('originalAmount').classList.remove('discount-applied');
+            document.getElementById('originalAmount').textContent = `₹${coursePrice}`;
+            document.getElementById('finalAmount').textContent = '';
+            document.querySelector('.upload-text span').textContent = 'Click to upload or drag and drop';
+            couponCode = null;
+            discountAmount = 0;
+            finalAmount = coursePrice;
+            submissionInProgress = false;
+            document.querySelectorAll('.form-step').forEach(step => step.classList.add('hidden'));
+            document.getElementById('step1').classList.remove('hidden');
+            currentStep = 1;
+        }
+
+        function nextStep(step) {
+            const currentStepElement = document.getElementById(`step${step}`);
+            const nextStepElement = document.getElementById(`step${step + 1}`);
+            const inputs = currentStepElement.querySelectorAll('input[required]');
+            let isValid = true;
+
+            inputs.forEach(input => {
+                if (!input.value) {
+                    isValid = false;
+                    input.style.boxShadow = '0 0 0 2px #ef4444';
+                } else {
+                    input.style.boxShadow = 'none';
+                }
+            });
+
+            if (step === 1) {
+                const nameInput = document.getElementById('name');
+                const phoneInput = document.getElementById('phone');
+                if (!validateName(nameInput.value)) {
+                    isValid = false;
+                    nameInput.style.boxShadow = '0 0 0 2px #ef4444';
+                    alert('Please enter a valid name (letters and spaces only)');
+                    return;
+                }
+                if (!validatePhone(phoneInput.value)) {
+                    isValid = false;
+                    phoneInput.style.boxShadow = '0 0 0 2px #ef4444';
+                    alert('Please enter a valid 10-digit phone number');
+                    return;
+                }
+            }
+
+            if (step === 2 && !document.getElementById('paymentDone').checked) {
+                alert('Please confirm that you have completed the payment');
+                return;
+            }
+
+            if (isValid) {
+                currentStepElement.classList.add('hidden');
+                nextStepElement.classList.remove('hidden');
+                currentStep = step + 1;
+            }
+        }
+
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (submissionInProgress) {
+                console.log('Submission already in progress');
+                return;
+            }
+
+            submissionInProgress = true;
+            console.log('Form submission started');
+
+            const fileInput = document.getElementById('image');
+            if (!fileInput.files.length) {
+                alert('Please upload your payment screenshot');
+                submissionInProgress = false;
+                return;
+            }
+
+            const file = fileInput.files[0];
+            if (file.size > 10 * 1024 * 1024) {
+                alert('File size should be less than 10MB');
+                submissionInProgress = false;
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('phone', document.getElementById('phone').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('school', document.getElementById('school').value);
+            formData.append('sem', document.getElementById('sem').value || '');
+            formData.append('courseCode', document.getElementById('courseCode').value);
+            if (couponCode) formData.append('couponCode', couponCode);
+            formData.append('image', file);
+
+            const submitButton = document.querySelector("button[type='submit']");
+            submitButton.disabled = true;
+            submitButton.innerText = "Processing...";
+
+            document.getElementById('step3').classList.add('hidden');
+            document.getElementById('step4').classList.remove('hidden');
+
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+            try {
+                console.log('Sending form data to server');
+                const response = await fetch('https://teenxcel-production.up.railway.app/api/payment/create', {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'same-origin',
+                    signal: controller.signal
+                });
+
+                clearTimeout(timeoutId);
+                console.log('Server response received:', response.status);
+                const data = await response.json();
+                console.log('Parsed response:', data);
+
+                if (data.success && data.statusCode === 201) {
+                    const sound = document.getElementById('successSound');
+                    if (sound) sound.play().catch(err => console.warn('Sound play failed:', err));
+                    document.getElementById('step4').classList.add('hidden');
+                    document.getElementById('successModal').style.display = 'block';
+                    sessionStorage.setItem('paymentSubmission', JSON.stringify({
+                        status: 'success',
+                        timestamp: Date.now()
+                    }));
+                } else {
+                    throw new Error(data.message || 'Payment submission failed');
+                }
+            } catch (error) {
+                clearTimeout(timeoutId);
+                console.error('Submission error:', error.name, error.message);
+                let errorMessage = 'An unexpected error occurred';
+                if (error.name === 'AbortError') {
+                    errorMessage = 'Request timed out or was cancelled';
+                    await checkServerSubmissionStatus();
+                    return;
+                } else if (error.message.includes('NetworkError')) {
+                    errorMessage = 'Network error occurred. Please check your connection.';
+                } else {
+                    errorMessage = error.message;
+                }
+                document.getElementById('failureMessage').textContent = errorMessage;
+                document.getElementById('step4').classList.add('hidden');
+                document.getElementById('failureModal').style.display = 'block';
+                sessionStorage.setItem('paymentSubmission', JSON.stringify({
+                    status: 'failed',
+                    message: errorMessage,
+                    timestamp: Date.now()
+                }));
+            } finally {
+                submitButton.disabled = false;
+                submitButton.innerText = "Submit Payment";
+                submissionInProgress = false;
+            }
+        }
+
+        async function checkServerSubmissionStatus() {
+            try {
+                console.log('Checking server submission status');
+                const response = await fetch('https://teenxcel-production.up.railway.app/api/payment/check-status', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: document.getElementById('email').value,
+                        courseCode: document.getElementById('courseCode').value
+                    })
+                });
+                const data = await response.json();
+                console.log('Server status response:', data);
+                if (data.success && data.statusCode === 200 && data.data.submitted) {
+                    alert("success : submitted");
+                    document.getElementById('step4').classList.add('hidden');
+                    document.getElementById('successModal').style.display = 'block';
+                    sessionStorage.setItem('paymentSubmission', JSON.stringify({
+                        status: 'success',
+                        timestamp: Date.now()
+                    }));
+                } else {
+                    document.getElementById('failureMessage').textContent = 'Submission may have failed. Please try again or contact support.';
+                    document.getElementById('step4').classList.add('hidden');
+                    document.getElementById('failureModal').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error checking server status:', error);
+                document.getElementById('failureMessage').textContent = 'Unable to verify submission. Please contact support.';
+                document.getElementById('step4').classList.add('hidden');
+                document.getElementById('failureModal').style.display = 'block';
+            }
+        }
+
+        function initFormSubmission() {
+            const form = document.getElementById('paymentForm');
+            if (!form) {
+                console.error('Payment form not found');
+                return;
+            }
+            if (formInitialized) {
+                console.log('Form already initialized');
+                return;
+            }
+            formInitialized = true;
+            form.addEventListener('submit', handleFormSubmit);
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+            });
+            console.log('Form submission initialized');
+        }
+
+        function setupFileUpload() {
+            const fileInput = document.getElementById('image');
+            if (fileInput) {
+                fileInput.addEventListener('change', (e) => {
+                    const fileName = e.target.files[0]?.name || 'Click to upload or drag and drop';
+                    document.querySelector('.upload-text span').textContent = fileName;
+                });
+            }
+        }
+
+        function setupDragAndDrop() {
+            const uploadArea = document.getElementById('uploadArea');
+            if (!uploadArea) return;
+
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, preventDefaults, false);
+            });
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, () => {
+                    uploadArea.style.borderColor = 'var(--primary-color)';
+                }, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, () => {
+                    uploadArea.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                }, false);
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                const files = e.dataTransfer.files;
+                document.getElementById('image').files = files;
+                if (files[0]) {
+                    document.querySelector('.upload-text span').textContent = files[0].name;
+                }
+            });
+        }
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        function setupBeforeUnload() {
+            window.addEventListener('beforeunload', (e) => {
+                const now = Date.now();
+                if (now - lastBeforeUnloadTime < 500) {
+                    console.log('Debounced beforeunload event');
+                    return;
+                }
+                lastBeforeUnloadTime = now;
+
+                if (submissionInProgress) {
+                    console.log('beforeunload triggered during submission', {
+                        url: window.location.href,
+                        time: new Date().toISOString()
+                    });
+                    e.preventDefault();
+                    e.returnValue = 'A payment submission is in progress. Are you sure you want to leave?';
+                } else {
+                    console.log('beforeunload triggered, but no submission in progress');
+                }
+            });
+        }
+
+        document.getElementById('backButton').addEventListener('click', () => {
+            document.getElementById('backModal').style.display = 'block';
+        });
+
+        window.onclick = (event) => {
+            const backModal = document.getElementById('backModal');
+            const failureModal = document.getElementById('failureModal');
+            if (event.target === backModal) closeBackModal();
+            else if (event.target === failureModal) closeFailureModal();
+        };
+
+        function checkSubmissionState() {
+            const submissionData = sessionStorage.getItem('paymentSubmission');
+            if (submissionData) {
+                const { status, message, timestamp } = JSON.parse(submissionData);
+                if (Date.now() - timestamp < 5 * 60 * 1000) {
+                    if (status === 'success') {
+                        document.getElementById('successModal').style.display = 'block';
+                        sessionStorage.removeItem('paymentSubmission');
+                    } else if (status === 'failed') {
+                        document.getElementById('failureMessage').textContent = message || 'Previous submission failed';
+                        document.getElementById('step4').classList.add('hidden');
+                        document.getElementById('step3').classList.remove('hidden');
+                        document.getElementById('failureModal').style.display = 'block';
+                        sessionStorage.removeItem('paymentSubmission');
+                    }
+                }
+            }
+        }
+
+        function init() {
+            console.log('Initializing payment form');
+            fetchCourseDetails();
+            initFormSubmission();
+            setupFileUpload();
+            setupDragAndDrop();
+            setupBeforeUnload();
+            checkSubmissionState();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+
+</html>
