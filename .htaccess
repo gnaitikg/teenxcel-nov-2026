@@ -1,0 +1,100 @@
+# TeenXcel - Apache configuration (only works on Apache / LiteSpeed hosting)
+Options -Indexes
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# 1. One redirect to https + non-www (no chains). If your host terminates SSL in a proxy
+#    (e.g. Cloudflare "Flexible"), remove the HTTPS condition to avoid a redirect loop.
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://teenxcel.in%{REQUEST_URI} [R=301,L]
+
+# 2. Old homepage URLs -> /
+RewriteRule ^teenxcel/?$ / [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?index\.html?$ / [R=301,L,NC]
+
+# 3. Old .html page URLs (with or without the /teenxcel/ prefix) -> new clean URLs
+RewriteRule ^(?:teenxcel/)?COMMING\-SOON/INDEX\.HTML$ /coming-soon/labs/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?COMMING\-SOON/INDEX_2\.HTML$ /coming-soon/swag-shop/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?COMMING\-SOON/INDEX_3\.HTML$ /coming-soon/courses/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?Call/index\.html$ /call/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?Career/index\.html$ /career/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?LIVE\-COURSES/API\.html$ /live-courses/api/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?LIVE\-COURSES/BB\.html$ /live-courses/bb/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?LIVE\-COURSES/CS\.html$ /live-courses/cs/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?LIVE\-COURSES/ED\.html$ /live-courses/ed/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?LIVE\-COURSES/EH\.html$ /live-courses/eh/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?LIVE\-COURSES/GD\.html$ /live-courses/gd/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?LIVE\-COURSES/WD\.html$ /live-courses/wd/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?LIVE\-COURSES/WS\.html$ /live-courses/ws/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?contact/index\.html$ /contact/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/ADs\.html$ /course-page/courses/ads/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/AS\.html$ /course-page/courses/as/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/BASH\.html$ /course-page/courses/bash/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/BB\.html$ /course-page/courses/bb/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/CPA\.html$ /course-page/courses/cpa/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/CS\.html$ /course-page/courses/cs/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/DW\.html$ /course-page/courses/dw/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/ED\.html$ /course-page/courses/ed/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/EH\.html$ /course-page/courses/eh/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/GD\.html$ /course-page/courses/gd/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/GO\-D\.html$ /course-page/courses/go-d/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/GUAI\.html$ /course-page/courses/guai/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/HC\.html$ /course-page/courses/hc/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/IG\.html$ /course-page/courses/ig/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/JS\.html$ /course-page/courses/js/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/LW\.html$ /course-page/courses/lw/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/NB\.html$ /course-page/courses/nb/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/NS\.html$ /course-page/courses/ns/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/OS\.html$ /course-page/courses/os/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/PD\.html$ /course-page/courses/pd/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/PL\.html$ /course-page/courses/pl/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/PSAI\.html$ /course-page/courses/psai/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/PY\.html$ /course-page/courses/py/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/SCr\.html$ /course-page/courses/scr/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/WD\.html$ /course-page/courses/wd/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/WS\.html$ /course-page/courses/ws/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?course\-page/courses/WUI\.html$ /course-page/courses/wui/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?courses/ALL/project/enroll\.html$ /courses/all/project/enroll/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?courses/ALL/project/index\.html$ /courses/all/project/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?courses/ALL/project/singleCourse\.html$ /courses/all/project/singlecourse/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?courses/LIVE\-COURSES/BUG\-BOUNTY\.html$ /courses/live-courses/bug-bounty/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?courses/LIVE\-COURSES/CYBER\-SECURITY\.html$ /courses/live-courses/cyber-security/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?courses/LIVE\-COURSES/ETHICAL\-HACKING\.html$ /courses/live-courses/ethical-hacking/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?courses/LIVE\-COURSES/GRAPHIC\-DESIN\.html$ /courses/live-courses/graphic-desin/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?courses/LIVE\-COURSES/SEMINAR/BUG\-BOUNTY\.html$ /courses/live-courses/seminar/bug-bounty/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?courses/LIVE\-COURSES/SEMINAR/CYBER\-SECURITY\.html$ /courses/live-courses/seminar/cyber-security/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?courses/LIVE\-COURSES/SEMINAR/ETHICAL\-HACKING\.html$ /courses/live-courses/seminar/ethical-hacking/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?courses/LIVE\-COURSES/SEMINAR/GRAPHIC\-DESIN\.html$ /courses/live-courses/seminar/graphic-desin/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?courses/LIVE\-COURSES/TARUN/BUG\-BOUNTY\.html$ /courses/live-courses/tarun/bug-bounty/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?courses/LIVE\-COURSES/TARUN/CYBER\-SECURITY\.html$ /courses/live-courses/tarun/cyber-security/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?courses/LIVE\-COURSES/TARUN/ETHICAL\-HACKING\.html$ /courses/live-courses/tarun/ethical-hacking/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?courses/LIVE\-COURSES/TARUN/GRAPHIC\-DESIN\.html$ /courses/live-courses/tarun/graphic-desin/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?courses/LIVE\-COURSES/WEB\-DEVELOPMENT\.html$ /courses/live-courses/web-development/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?courses/LIVE\-COURSES/WEB\-SECURITY\.html$ /courses/live-courses/web-security/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?popup/index\.html$ /popup/ [R=301,L,NC]
+
+# 4. Old payment pages (not part of this repo) -> same clean-URL convention
+RewriteRule ^(?:teenxcel/)?payment/pay-course/([^/]+?)\.html$ /payment/pay-course/$1/ [R=301,L,NC]
+
+# 5. Old image locations (the backend may still return these paths)
+RewriteRule ^(?:teenxcel/)?asset/courses/(.*)$ /assets/images/courses/$1 [R=301,L]
+RewriteRule ^(?:teenxcel/)?course-page/Mentor/(.*)$ /assets/images/mentors/$1 [R=301,L]
+
+# 6. Anything else still under /teenxcel/ -> same path on the root domain
+RewriteRule ^teenxcel/(.+)$ /$1 [R=301,L]
+</IfModule>
+
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/png "access plus 1 year"
+ExpiresByType image/jpeg "access plus 1 year"
+ExpiresByType image/webp "access plus 1 year"
+ExpiresByType image/svg+xml "access plus 1 year"
+ExpiresByType image/gif "access plus 1 year"
+ExpiresByType font/woff2 "access plus 1 year"
+ExpiresByType text/css "access plus 1 month"
+ExpiresByType application/javascript "access plus 1 month"
+</IfModule>

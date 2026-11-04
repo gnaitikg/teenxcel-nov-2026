@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join the TeenXcel Team | TeenXcel</title>
+  <meta name="description" content="Want to work with TeenXcel? Share your name, skill set, how long you have worked with it, and your contact details, and we will get in touch.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://teenxcel.in/career/">
+  <meta property="og:site_name" content="TeenXcel">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_IN">
+  <meta property="og:title" content="Join the TeenXcel Team | TeenXcel">
+  <meta property="og:description" content="Want to work with TeenXcel? Share your name, skill set, how long you have worked with it, and your contact details, and we will get in touch.">
+  <meta property="og:url" content="https://teenxcel.in/career/">
+  <meta property="og:image" content="https://teenxcel.in/assets/images/brand/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="TeenXcel logo">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://teenxcel.in/assets/images/brand/og-image.png">
+  <meta name="twitter:title" content="Join the TeenXcel Team | TeenXcel">
+  <meta name="twitter:description" content="Want to work with TeenXcel? Share your name, skill set, how long you have worked with it, and your contact details, and we will get in touch.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/brand/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/brand/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/brand/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/career/style.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="background">
+    <div class="particles"></div>
+  </div>
+
+  <div class="container" id="form-container">
+    <div class="form-wrapper" id="parallax">
+      <h1>Join TeenXcel</h1>
+      <form id="registration-form" method="post" action="https://teenxcel-production.up.railway.app/api/career/create">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="skillset">Skill Set</label>
+          <input type="text" name="skills" placeholder="e.g. have expertise in HTML" required>
+        </div>
+        <div class="form-group">
+          <label for="duration">Duration of Working with This Skill</label>
+          <input type="text" name="experience" placeholder="e.g. 1 year 6 months" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Number (10 digits)</label>
+          <input type="tel" name="phone" id="phone" pattern="[0-9]{10}" maxlength="10" required>
+          <span class="error-message" id="phone-error" style="color: red; font-size: 12px; display: none;">Please enter
+            exactly 10 digits</span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="location">Location (City)</label>
+          <input type="text" name="location" required>
+        </div>
+        <button type="submit" id="submit-btn">
+          <span class="btn-text" style="cursor: pointer;">Submit</span>
+        </button>
+        <span class="btn-shine"></span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="success-container" id="success-container">
+    <div class="success-message">
+      <h2>THANKS FOR YOUR INTEREST</h2>
+      <p>WE WILL CONTACT SOON</p>
+      <audio id="background-music" src="/assets/media/career/your-paragraph-text.mp3" preload="auto"></audio>
+      <script>
+        document.getElementById('success-container').addEventListener('onload', function () {
+          var audio = document.getElementById('background-music');
+          audio.currentTime = 0; // Reset audio to the beginning
+          audio.play(); // Play the audio
+        });
+      </script>
+      <div class="checkmark">✓</div>
+    </div>
+  </div>
+
+  <div class="sparkles-container" id="sparkles-container"></div>
+
+  <script src="/assets/js/career/script.js"></script>
+  <script src="/assets/js/career/particles.js"></script>
+  <script src="/assets/js/career/success.js"></script>
+  <script>
+    // Phone number validation
+    const phoneInput = document.getElementById('phone');
+    const phoneError = document.getElementById('phone-error');
+    const form = document.getElementById('registration-form');
+
+    // Allow only numbers
+    phoneInput.addEventListener('input', function (e) {
+      // Remove any non-numeric characters
+      e.target.value = e.target.value.replace(/[^0-9]/g, '');
+
+      // Check if length is not 10
+      if (e.target.value.length > 0 && e.target.value.length !== 10) {
+        phoneError.style.display = 'block';
+        e.target.style.borderColor = '#ff4444';
+      } else {
+        phoneError.style.display = 'none';
+        e.target.style.borderColor = '';
+      }
+    });
+
+    // Validate on form submit
+    form.addEventListener('submit', function (e) {
+      const phoneValue = phoneInput.value;
+
+      // Check if phone number is exactly 10 digits
+      if (phoneValue.length !== 10 || !/^\d{10}$/.test(phoneValue)) {
+        e.preventDefault();
+        phoneError.style.display = 'block';
+        phoneInput.style.borderColor = '#ff4444';
+        phoneInput.focus();
+        return false;
+      }
+    });
+  </script>
+</body>
+
+</html>

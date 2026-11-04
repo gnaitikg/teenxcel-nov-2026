@@ -1,0 +1,752 @@
+/* Base Styles & Reset */
+:root {
+    /* Color System */
+    --color-primary: #0066CC;
+    --color-primary-light: #4D94DB;
+    --color-primary-dark: #004C99;
+    
+    --color-secondary: #E4B363;
+    --color-secondary-light: #EECCB6;
+    --color-secondary-dark: #C99A54;
+    
+    --color-accent: #E74C3C;
+    --color-accent-light: #F1978E;
+    --color-accent-dark: #C0392B;
+    
+    --color-success: #34C759;
+    --color-warning: #FF9500;
+    --color-error: #FF3B30;
+    
+    --color-neutral-100: #F5F5F7;
+    --color-neutral-200: #E5E5EA;
+    --color-neutral-300: #D1D1D6;
+    --color-neutral-400: #C7C7CC;
+    --color-neutral-500: #AEAEB2;
+    --color-neutral-600: #8E8E93;
+    --color-neutral-700: #636366;
+    --color-neutral-800: #3A3A3C;
+    --color-neutral-900: #1C1C1E;
+    
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --font-size-xs: 0.75rem;   /* 12px */
+    --font-size-sm: 0.875rem;  /* 14px */
+    --font-size-md: 1rem;      /* 16px */
+    --font-size-lg: 1.125rem;  /* 18px */
+    --font-size-xl: 1.25rem;   /* 20px */
+    --font-size-2xl: 1.5rem;   /* 24px */
+    --font-size-3xl: 1.875rem; /* 30px */
+    --font-size-4xl: 2.25rem;  /* 36px */
+    
+    /* Spacing (8px system) */
+    --space-1: 0.25rem;  /* 4px */
+    --space-2: 0.5rem;   /* 8px */
+    --space-3: 0.75rem;  /* 12px */
+    --space-4: 1rem;     /* 16px */
+    --space-5: 1.5rem;   /* 24px */
+    --space-6: 2rem;     /* 32px */
+    --space-7: 2.5rem;   /* 40px */
+    --space-8: 3rem;     /* 48px */
+    --space-9: 4rem;     /* 64px */
+    --space-10: 5rem;    /* 80px */
+    
+    /* Borders & Shadows */
+    --radius-sm: 0.25rem;  /* 4px */
+    --radius-md: 0.5rem;   /* 8px */
+    --radius-lg: 0.75rem;  /* 12px */
+    --radius-xl: 1rem;     /* 16px */
+    --radius-full: 9999px;
+    
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-normal: 300ms ease;
+    --transition-slow: 500ms ease;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    font-family: var(--font-family);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-neutral-800);
+    background-color: var(--color-neutral-100);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    line-height: 1.2;
+    color: var(--color-neutral-900);
+    font-weight: 600;
+  }
+  
+  p {
+    margin-bottom: var(--space-4);
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  
+  a:hover {
+    color: var(--color-primary-dark);
+  }
+  
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-4);
+  }
+  
+  /* Button Styles */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3) var(--space-5);
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    font-size: var(--font-size-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border: none;
+    outline: none;
+    text-align: center;
+    min-width: 140px;
+    gap: var(--space-2);
+  }
+  
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+  }
+  
+  .btn-secondary {
+    background-color: white;
+    color: var(--color-primary);
+    border: 1px solid var(--color-neutral-300);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .btn-secondary:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary-dark);
+    transform: translateY(-2px);
+  }
+  
+  /* Back Button */
+  .back-button-container {
+    position: fixed;
+    top: var(--space-4);
+    right: var(--space-4);
+    z-index: 100;
+  }
+  
+  .back-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background-color: white;
+    box-shadow: var(--shadow-md);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+  
+  .back-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .back-button i {
+    font-size: var(--font-size-lg);
+    color: var(--color-neutral-800);
+  }
+  
+  /* Course Header Section */
+  .course-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--space-8);
+    background-color: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+  
+  .course-thumbnail {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9; /* Modern & cleaner than padding-bottom hack */
+    overflow: hidden;
+    background-color: #f0f0f0; /* fallback bg if image doesn't load */
+  }
+  
+  .thumbnail-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .thumbnail-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+    display: block;
+  }
+  
+  .thumbnail-image:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Optional live badge styling (if not already in your CSS) */
+  .live-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: red;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .live-dot {
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border-radius: 50%;
+  }
+  
+  
+  .live-badge {
+    position: absolute;
+    top: var(--space-4);
+    left: var(--space-4);
+    display: flex;
+    align-items: center;
+    background-color: var(--color-error);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    color: white;
+    font-weight: 600;
+    font-size: var(--font-size-xs);
+    gap: var(--space-1);
+    z-index: 1;
+  }
+  
+  .live-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: white;
+    animation: pulse 2s infinite;
+  }
+  
+  .course-title-container {
+    padding: var(--space-5);
+  }
+  
+  .course-title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-4);
+  }
+  
+  .course-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  
+  .price-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+  
+  .price-label {
+    font-size: var(--font-size-md);
+    color: var(--color-neutral-700);
+  }
+  
+  .price-amount {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-neutral-900);
+  }
+  
+  .price-original {
+    font-size: var(--font-size-md);
+    color: var(--color-neutral-600);
+    text-decoration: line-through;
+  }
+  
+  .discount-badge {
+    background-color: var(--color-secondary);
+    color: var(--color-neutral-900);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-full);
+  }
+  
+  .course-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+  
+  /* Course Description Section */
+  .course-description {
+    margin-bottom: var(--space-8);
+    background-color: white;
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .section-title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-5);
+    position: relative;
+    padding-bottom: var(--space-3);
+  }
+  
+  .section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-primary);
+  }
+  
+  .description-content {
+    color: var(--color-neutral-700);
+  }
+  
+  .course-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-4);
+    margin: var(--space-5) 0;
+    padding: var(--space-4);
+    background-color: var(--color-neutral-100);
+    border-radius: var(--radius-md);
+  }
+  
+  .highlight-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-neutral-800);
+  }
+  
+  .highlight-item i {
+    color: var(--color-primary);
+    font-size: var(--font-size-lg);
+  }
+  
+  .course-topics {
+    margin-top: var(--space-4);
+  }
+  
+  .course-topics li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+    padding-left: var(--space-4);
+  }
+  
+  .course-topics i {
+    color: var(--color-success);
+  }
+  
+  /* Benefits Section */
+  .benefits-section {
+    margin-bottom: var(--space-8);
+    background-color: white;
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .benefits-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-5);
+  }
+  
+  .benefit-card {
+    display: flex;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-neutral-200);
+    transition: all var(--transition-normal);
+  }
+  
+  .benefit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary-light);
+  }
+  
+  .benefit-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-primary-light);
+    color: white;
+    font-size: var(--font-size-xl);
+    flex-shrink: 0;
+  }
+  
+  .benefit-content {
+    flex: 1;
+  }
+  
+  .benefit-content h3 {
+    margin-bottom: var(--space-2);
+    font-size: var(--font-size-lg);
+  }
+  
+  .benefit-content p {
+    color: var(--color-neutral-700);
+    font-size: var(--font-size-md);
+    margin-bottom: var(--space-3);
+  }
+  
+  .sample-image-container {
+    position: relative;
+    margin-top: var(--space-3);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .sample-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
+  }
+  
+  .sample-image:hover {
+    transform: scale(1.05);
+  }
+  
+  .sample-label {
+    position: absolute;
+    bottom: var(--space-2);
+    right: var(--space-2);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-size-xs);
+    border-radius: var(--radius-sm);
+  }
+  
+  /* Mentor Section */
+  .mentor-section {
+    margin-bottom: var(--space-8);
+    background-color: white;
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .mentor-container {
+    display: flex;
+    gap: var(--space-6);
+  }
+  
+  .mentor-image-container {
+    flex: 0 0 200px;
+    height: 200px;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+  
+  .mentor-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
+  }
+  
+  .mentor-image:hover {
+    transform: scale(1.05);
+  }
+  
+  .mentor-details {
+    flex: 1;
+  }
+  
+  .mentor-name {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-2);
+  }
+  
+  .mentor-title {
+    color: var(--color-primary);
+    font-weight: 500;
+    margin-bottom: var(--space-4);
+  }
+  
+  .mentor-credentials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+    padding: var(--space-4);
+    background-color: var(--color-neutral-100);
+    border-radius: var(--radius-md);
+  }
+  
+  .credential-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  
+  .credential-item i {
+    color: var(--color-primary);
+  }
+  
+  .mentor-bio {
+    color: var(--color-neutral-700);
+    margin-bottom: var(--space-4);
+  }
+  
+  .mentor-achievements {
+    margin-bottom: var(--space-4);
+  }
+  
+  .mentor-achievements h4 {
+    margin-bottom: var(--space-3);
+    color: var(--color-neutral-800);
+  }
+  
+  .mentor-achievements ul {
+    padding-left: var(--space-4);
+  }
+  
+  .mentor-achievements li {
+    position: relative;
+    padding-left: var(--space-4);
+    margin-bottom: var(--space-2);
+  }
+  
+  .mentor-achievements li:before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+  }
+  
+  .mentor-social {
+    display: flex;
+    gap: var(--space-3);
+  }
+  
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    transition: all var(--transition-fast);
+  }
+  
+  .social-link.linkedin {
+    background-color: #0077B5;
+    color: white;
+  }
+  
+  .social-link.portfolio {
+    background-color: var(--color-neutral-800);
+    color: white;
+  }
+  
+  .social-link.github {
+    background-color: #24292e;
+    color: white;
+  }
+  
+  .social-link:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+    color: white;
+  }
+  
+  /* CTA Section */
+  .cta-section {
+    background-color: var(--color-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    color: white;
+  }
+  
+  .cta-title {
+    color: white;
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-3);
+  }
+  
+  .cta-description {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-5);
+    opacity: 0.9;
+  }
+  
+  .cta-button {
+    background-color: white;
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--color-neutral-100);
+    transform: translateY(-2px);
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .course-header {
+      flex-direction: column;
+    }
+    
+    .mentor-container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    
+    
+    .mentor-social {
+      justify-content: center;
+    }
+    
+    .section-title:after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .course-title {
+      font-size: var(--font-size-xl);
+    }
+    
+    .course-actions {
+      justify-content: center;
+    }
+  
+    .benefit-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .section-title {
+      text-align: center;
+    }
+    
+    .mentor-credentials {
+      text-align: left;
+    }
+    
+    .mentor-achievements ul {
+      text-align: left;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .container {
+      padding: var(--space-3);
+    }
+    
+    .course-description, 
+    .benefits-section,
+    .mentor-section,
+    .cta-section {
+      padding: var(--space-4);
+    }
+    
+    .back-button-container {
+      top: var(--space-3);
+      right: var(--space-3);
+    }
+    
+    .benefit-card {
+      padding: var(--space-3);
+    }
+    
+    .course-meta {
+      gap: var(--space-3);
+    }
+    
+    .price-container {
+      justify-content: center;
+    }
+    
+    .course-title-container {
+      padding: var(--space-3);
+    }
+    
+    .mentor-social {
+      flex-direction: column;
+    }
+    
+    .social-link {
+      width: 100%;
+      justify-content: center;
+    }
+  }
