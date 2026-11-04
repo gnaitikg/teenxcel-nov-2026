@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No Enrollments Are Live</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', sans-serif;
+    background: #080d1c;
+    overflow: hidden;
+    color: white;
+}
+
+.background {
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, #243b7955, transparent 35%),
+        radial-gradient(circle at 80% 80%, #7138a855, transparent 35%),
+        #080d1c;
+    z-index: -1;
+}
+
+.card {
+    width: min(90%, 600px);
+    padding: 65px 35px;
+    text-align: center;
+    border: 1px solid #ffffff20;
+    border-radius: 28px;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 25px 80px #00000055;
+    animation: appear 1s ease forwards;
+}
+
+.icon {
+    width: 95px;
+    height: 95px;
+    margin: 0 auto 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 43px;
+    border-radius: 28px;
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    box-shadow: 0 0 40px #8b5cf666;
+    animation: float 3s ease-in-out infinite;
+}
+
+.status {
+    display: inline-block;
+    padding: 9px 18px;
+    margin-bottom: 22px;
+    border-radius: 50px;
+    background: #f59e0b18;
+    border: 1px solid #f59e0b55;
+    color: #fbbf24;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: clamp(30px, 6vw, 45px);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #fff, #a5b4fc, #d8b4fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+p {
+    color: #aab3ca;
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 420px;
+    margin: auto;
+}
+
+.divider {
+    width: 65px;
+    height: 4px;
+    margin: 30px auto;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #6366f1, #c084fc);
+}
+
+.footer {
+    color: #77819d;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+@media(max-width: 480px) {
+    .card {
+        padding: 50px 22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div class="card">
+
+    <div class="icon">🎓</div>
+
+    <div class="status">
+        ● Enrollment Status
+    </div>
+
+    <h1>No Enrollments Are Live!</h1>
+
+    <div class="divider"></div>
+
+    <p>
+        There are currently no active enrollments available.
+        Please check back soon for upcoming courses and new opportunities.
+    </p>
+
+    <div class="footer" style="margin-top:35px;">
+        THANK YOU FOR YOUR INTEREST
+    </div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("Enrollment status page loaded successfully.");
+});
+</script>
+
+</body>
+</html>
