@@ -77,7 +77,7 @@ RewriteRule ^(?:teenxcel/)?courses/LIVE\-COURSES/WEB\-SECURITY\.html$ /courses/l
 RewriteRule ^(?:teenxcel/)?popup/index\.html$ /popup/ [R=301,L,NC]
 
 # 4. Old payment pages (not part of this repo) -> same clean-URL convention
-RewriteRule ^(?:teenxcel/)?payment/pay-course/([^/]+?)\.html$ /payment/pay-course/$1/ [R=301,L,NC]
+RewriteRule ^(?:teenxcel/)?payment/pay-course/([^/]+?)\.html$ /payment/ [R=301,L,NC]
 
 # 5. Old image locations (the backend may still return these paths)
 RewriteRule ^(?:teenxcel/)?asset/courses/(.*)$ /assets/images/courses/$1 [R=301,L]
